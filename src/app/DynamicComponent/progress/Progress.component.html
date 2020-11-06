@@ -1,0 +1,92 @@
+<div [ngClass]="{overlay: isLoading}" *ngIf="isLoading">
+  <mat-progress-spinner class="example-margin" strokeWidth="3" [diameter]="30" [mode]="'indeterminate'" [value]="50"
+    style="margin-left: 50% !important;margin-top: 17% !important;">
+  </mat-progress-spinner>
+</div>
+<div class="col-xs-12" style="padding:0px;padding-right:8px;" *ngIf="!isLoading">
+  <div style="background-color:white;margin-top:8px;padding:4px;background-color:white;" class="shadow">
+    <!-- <div style="padding:6px;padding-top:0px;margin-top:-4px;">
+      <h4 style="font-family: 'Nunito', sans-serif;font-size:14px;font-weight:bold;color:#101010"><i
+          class="fa fa-area-chart" aria-hidden="true"></i> Purchase Value ( Division Wise )</h4>
+    </div> -->
+    <ul style="list-style:none;margin:0px;padding:0px;overflow-y:auto;font-family:'Roboto',sans-serif;padding:8px;"
+      id="">
+      <!-- | filter :{'CNo':CCNO } :true -->
+      <li *ngFor="let d of Data" ng-style="{'border-top:1px solid #efefef':d.Show}"
+        style="font-size:11px !important;padding-top:0px;padding-bottom:7px;margin-top:0px;">
+        <div class="container-fluid">
+          <div class="row">
+            <!--  -->
+            <div class="col-xs-9" *ngIf="d.Show"
+              style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px;padding-right:0px;background-color:#efefef;font-weight:bold;padding: 4px !important;"
+              title="{{d.Name}}">
+              {{d.Name}}
+            </div>
+
+            <div class="col-xs-9" *ngIf="!d.Show"
+              style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px;padding-right:0px;color:#e96f08;padding-top:7px;font-weight:bold">
+              {{d.Name}}
+            </div>
+
+            <div class="col-xs-2 amount" style="font-weight:bold;white-space:nowrap;font-size:11px;padding-top:5px;"
+              *ngIf="isNumber(d.Amount) && d.Amount">
+              <!-- {{d.Amount|currency: "₹ ":2}} -->
+              {{    d.Amount | currency:'INR':'symbol-narrow':'0.2-2'}}
+            </div>
+            <div class="col-xs-3" style="font-weight:bold;white-space:nowrap;font-size:11px;padding-top:5px;"
+              *ngIf="!isNumber(d.Amount) && d.Amount">
+
+              ₹ {{d.Amount}}
+            </div>
+            <!--  -->
+            <div class="col-xs-3"
+              style="font-weight:bold;white-space:nowrap;font-size:11px;padding-top:5px;text-align: right;"
+              *ngIf="d.Count">
+              <!-- {{d.Amount|currency: "₹ ":2}} -->
+              {{d.Count}}
+            </div>
+            <div class="col-xs-3" style="font-weight:bold;white-space:nowrap;font-size:11px;padding-top:5px;"
+              *ngIf="d.Qty">
+              <!-- {{d.Amount|currency: "₹ ":2}} -->
+              {{d.Qty}}
+            </div>
+            <!-- -->
+            <div class="col-xs-3" style="padding-top:7px;" *ngIf="d.Show && d.isProgressVisible">
+              <mat-progress-bar mode="determinate" value="{{d.Percentage}}"></mat-progress-bar>
+            </div>
+            <!-- (click)="d.Show=(d.Show)?false:true;GetDepartments(d.DNo,d.CNo,d.UNo,d.Show)"  @*ToggleDepartmentSection(d)*@-->
+            <div class="col-xs-1" style="outline:none;cursor: pointer;" (click)="d.Show=(d.Show)?false:true;"
+              *ngIf="FeatureToShow.Graph">
+              <mat-icon *ngIf="d.Show" style="font-size: 20px !important;">
+                keyboard_arrow_down</mat-icon>
+              <mat-icon *ngIf="!d.Show" style="font-size: 20px !important;">
+                keyboard_arrow_up</mat-icon>
+            </div>
+          </div>
+          <div class="row" style="transition:all 0.5s;overflow:hidden"
+            [ngClass]="{'ShowDepartment':!d.Show,'HideDepartment':d.Show}"
+            *ngIf="FeatureToShow.Graph && Chartdata.length > 0">
+            <div style="min-height:200px">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xs-12" style="padding-top:40px;">
+                    <google-chart #chart [title]="" [data]="Chartdata" [columns]="columnNames" [options]="options"
+                      [type]="type" *ngIf="!d.Show">
+                    </google-chart>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+    <div style="position:absolute;" *ngIf="FeatureToShow.ActionBtn">
+      <span *ngFor="let item of TileData"><span class="btn btn-default"
+          style="font-size:11px;font-weight:bold;border-radius:0px;" [ngClass]="{'ActiveBtn':ActionBtn==item.Value}"
+          (click)="OnChangeofTile(item.Value)">{{item.Caption}}
+        </span></span>
+    </div>
+  </div>
+</div>

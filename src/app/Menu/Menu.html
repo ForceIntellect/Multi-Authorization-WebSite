@@ -1,0 +1,224 @@
+<style>
+  .col-sm-2,
+  .col-xs-4,
+  .col-sm-10,
+  .col-xs-8,
+  .col-xs-4 {
+    padding: 0px;
+  }
+
+  .form-control {
+
+    max-height: 25px;
+    border-radius: 0px;
+    font-size: 13px;
+  }
+
+  label {
+    padding-top: 5px;
+  }
+
+  .hover {
+    cursor: pointer;
+  }
+
+  .Box {
+    margin: 0 0 2em 0;
+    list-style-type: none;
+    padding: 0;
+    width: 15em;
+  }
+
+  .Row {
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    background-color: #EEE;
+    margin: .5em;
+    padding: .3em 0;
+    height: 1.6em;
+    border-radius: 4px;
+  }
+
+  .Row:hover {
+    color: #607D8B;
+    background-color: #DDD;
+    left: .1em;
+  }
+
+  .Row:active {
+    background-color: #CFD8DC;
+    color: white;
+  }
+
+  /*
+.heroes li.selected:hover {
+  background-color: #BBD8DC;
+  color: white;
+}*/
+  .Box .badge {
+    display: inline-block;
+    font-size: small;
+    color: white;
+    padding: 0.8em 0.7em 0 0.7em;
+    background-color: #405061;
+    line-height: 1em;
+    position: relative;
+    left: -1px;
+    top: -4px;
+    height: 1.8em;
+    margin-right: .8em;
+    border-radius: 4px 0 0 4px;
+  }
+
+  .reqTilexs {
+    box-shadow: 2px 2px 10px #101010;
+    background: White;
+    color: black;
+    border-radius: 5px;
+
+  }
+
+  div {
+    word-wrap: break-word;
+  }
+
+  ul.yourclass {
+    border: solid 2px skyblue;
+    border-radius: 5px;
+    padding: 0.5em 1em 0.5em 2.3em;
+    position: relative;
+  }
+
+  ul.yourclass li {
+    line-height: 1.5;
+    padding: 0.5em 0;
+    list-style-type: none !important;
+  }
+
+  ul.yourclass li:before {
+    font-family: FontAwesome;
+    content: "\f138";
+    position: absolute;
+    left: 1em;
+    color: skyblue;
+  }
+
+  #di {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    box-sizing: border-box;
+    width: 100px;
+    height: 100px;
+  }
+
+  #di:before {
+    content: "";
+    display: block;
+    background-color: #2980b9;
+    width: 100px;
+    height: 100px;
+  }
+
+  #di:hover:before {
+    width: 50px;
+    height: 50px;
+    transition: all 200ms linear;
+  }
+</style>
+
+<div class="container-fluid" style="Font-size:12px;padding: 0px;">
+  <div style="min-height: 40px;background-color: #757dd3;padding: 10px 10px;color: #fff;font-size: 15px">
+
+    Home
+    <div class="pull-right hover" (click)="LogOutDialog()" style="font-size: 12px;font-weight: bold">Logout</div>
+  </div>
+  <!--
+    <div style="min-height: 30px;border-bottom: 1px solid #efefef;padding: 10px;box-shadow: 0px 1px 3px #00000033">
+
+      <div class="container-fluid">
+      
+        <div class="row">
+          <div class="col-sm-4 col-xs-12">
+               <div style="display: grid; grid-template-columns: 110px 200px">
+                     <div>
+                        <label style="vertical-align: middle">SC Order No.</label> 
+                     </div>
+                     <div>
+                        <input class="form-control" [(ngModel)]="filter.SCOrderNo" maxlength="30"/>
+                     </div>
+               </div>
+          </div>
+          <div class="col-sm-4 col-xs-12">
+              <div style="display: grid; grid-template-columns: 110px 100px">
+                    <div>
+                       <label style="vertical-align: middle">Document Status</label> 
+                    </div>
+                    <div>
+                      <select class="form-control" style="padding: 0px;" [(ngModel)]="filter.StatusNo">
+                          <option *ngFor="let option of FillValues.Table" value={{option.StatusNo}}>{{option.StatusName}}</option>
+                          <option  value=null></option>
+                      </select>
+                    </div>
+              </div>
+         </div>
+         <div class="col-sm-4 col-xs-12">
+            <div >
+                
+              <button (click)="searchAuthorizationData()" class="btn btn-sm pull-right btn-danger" style="border-radius:0px;box-shadow: 0px 1px 3px #00000022">Search</button>
+            </div>
+       </div>
+        </div>
+      
+
+      </div>
+     
+
+    </div>
+  -->
+  <!--
+  <div class="container-fluid" style="max-height: 60vh;overflow: auto;padding: 0px;">
+
+      <div class="row Row" [routerLink]="[ '/SCSOAuthorizationMain' ]" 
+      style="border:1px solid #efefef;margin:10px;box-shadow: 0px 1px 3px #00000011;Cursor:Pointer;padding: 0px;font-size: 20px;">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+         <b>SC Order Authorization</b>
+  
+        </div>
+      </div>
+
+      <div class="row Row" [routerLink]="[ '/PMPOAuthorizationMain' ]" 
+      style="border:1px solid #efefef;margin:10px;box-shadow: 0px 1px 3px #00000011;Cursor:Pointer;padding: 0px;font-size: 20px;">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+         <b>Purchase Order Authorization</b>
+  
+        </div>
+      </div>
+  </div>
+-->
+
+
+  <div class="row" style="padding:4px;">
+    <!--visible-xs-->
+    <div class="col-sm-12 col-xs-12 ">
+      <section class="" *ngFor="let AuthM of AuthorizationMenu.Table">
+        <div class="container text-left" style="margin:5px;">
+          <!--class ="text-center"-->
+          <div class=" col-sm-4 col-xs-12 hover" style="padding:4px;left:10px;">
+            <div class="reqTilexs" (click)="OpenAuthMain(AuthM.FormCode)" style="padding:4px;">
+              <h3><i class="fa fa-handshake-o" aria-hidden="true" style="font-size:18px;color:#ff6a00"></i>
+                {{AuthM.FormCaption}}</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </div>
+
+
+
+
+
+</div>

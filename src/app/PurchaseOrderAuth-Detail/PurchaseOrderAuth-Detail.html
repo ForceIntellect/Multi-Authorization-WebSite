@@ -1,0 +1,1103 @@
+<!-- Test-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<style>
+  .animate{
+    transition: all 0.2s !important;
+  }
+  .highlight1 {
+               font-family: 'Nunito',sans-serif;
+               font-weight: bold;
+               font-size: 11px;
+               color: #db7744;
+               margin-bottom: 10px;
+               padding-top: 10px;
+              }
+  .rightpadding {
+                 padding-right: 0px;
+                }
+  .leftpadding {
+                 padding-left: 0px;
+               }
+   .col-sm-2,.col-sm-4,.col-sm-6,.col-sm-8,.col-sm-10,.col-sm-12,
+   .col-xs-6,.col-xs-12,.col-md-2, .col-xs-5,.col-md-10,.col-xs-7
+                        {
+                          padding-left: 0px;
+                          padding-right: 0px;
+                          font-size: 11px !important;
+;
+                        }
+    .row {
+           padding-left: 5px;
+           padding-right:10px;
+           padding-top: 2px;
+           padding-bottom: 2px;
+         }           
+     *{
+       font-family: 'Nunito', sans-serif;  
+      } 
+
+      .highlight2{
+
+        padding:8px 5px;
+        background-color: #efefef;
+        margin: 1px;
+        font-weight: bold;
+        box-shadow: 0px 1px 3px #00000020;
+        margin-bottom: 4px;
+        color:#db7744 !important;
+        cursor: pointer;
+      }
+      .btn{
+        border-radius: 0px;
+        box-shadow: 0px 1px 2px #00000022;
+        margin: 2px;
+      }
+      .bottomBar{
+
+        position: fixed;
+        bottom: 0px;
+        min-height: 35px;
+        z-index: 10;
+        background-color: #efefef;
+       
+        width: 100%;
+        text-align: center;
+        box-shadow: 1px 0px 2px #00000022;
+        border-top: 1px solid #dfdfdf;
+        
+      }
+      .authorizationButton{
+
+        background-color: #757dd3;
+        border: none;
+        outline: none;
+        margin-left: 3px;
+        margin-top: 3px;
+        
+      }
+      .modals{
+
+        position: fixed;
+        width: 100%;
+        z-index: 200;
+        background: rgba(0,0,0,0.3);
+        min-height: 100vh;
+        top: 0px;
+        padding-top: 20%;
+      }
+      .inputArea{
+
+        width: 300px;
+        margin: 0 auto;
+        min-height: 200px;
+        padding: 10px;
+        background-color: #fff;
+      }
+      .collapse{
+        max-height: 0px;
+        overflow: hidden;
+      }
+
+      .expand{
+        max-height: 400px;
+        overflow: hidden;
+        overflow-y: auto;
+        overflow-x: hidden
+      }
+      .hover{
+        cursor: pointer;
+      }
+      div {
+       word-wrap: break-word;
+      }
+      .DownLink:hover{
+        text-decoration: underline;
+      }
+ </style>
+ 
+ <!--<div class="container-fluid" style="Font-size:12px;">
+     <div class="row" style="padding-left:5px; padding-top:20px;">
+       Next Approver: 
+         <Select>
+           <option  *ngFor="let combo of AuthorizationDetail.Table1" value={{combo.Data}}>{{combo.Data}}</option>
+         </Select>
+     </div>`
+ </div>-->
+ <div class="container-fluid" style="Font-size:12px;padding: 0px;overflow: hidden;padding-bottom: 20px;" *ngIf="AuthorizationDetail.Table">
+
+    <div style="min-height: 40px;width: 100%;position: fixed;background-color: #757dd3;padding: 10px 10px;color: #fff;font-size: 15px !important;z-index: 1;">
+
+        PO Authorization
+        <div class="pull-right hover" [routerLink]="[ '/Menu' ]" style="font-size: 12px;font-weight: bold">Home</div>
+        <div class="pull-right hover" [routerLink]="[ '/PMPOAuthorizationMain' ]" style="font-size: 12px;font-weight: bold;margin-right: 10px;">Open</div>
+        <div class="pull-right hover" (click)="LogOutDialog()" style="font-size: 12px;font-weight: bold;margin-right: 10px;">Logout</div>
+    
+    </div>
+     <div class="row rightpadding"  style="padding:40px 15px !important">
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 rightpadding">
+         
+         <div class="container-fluid">
+           <div class="row rightpadding">
+ 
+             <div class= "col-md-3 col-sm-6 col-xs-12 rightpadding">
+                 <div class="container-fluid">
+                     <!--
+                    <div class = "row rightpadding">
+                      <div class= "col-sm-12 col-xs-12 rightpadding">
+                         <div class="highlight1"> Company </div>
+                      </div>
+                    </div>  -->
+                    <div class = "row rightpadding"> 
+                      <div class= "col-sm-6 col-xs-6 rightpadding">
+                        <b>Purchase Order No</b>
+                      </div>
+                      <div class = "col-sm-6 col-xs-6 rightpadding">
+                         :{{AuthorizationDetail.Table[0].DocumentNoYearly}} [ {{AuthorizationDetail.Table[0].AmendmentNo}}]({{AuthorizationDetail.Table[0].DocumentDate}}) 
+                      </div>
+                    </div>
+                    <div class="row rightpadding">
+                      <div class="col-sm-6 col-xs-6 rightpadding">
+                        <b>Company</b>
+                      </div>
+                     <div class="col-sm-6 col-xs-6 rightpadding">
+                       : {{AuthorizationDetail.Table[0].Company}}
+                     </div>
+                   </div>
+                    <div class="row rightpadding" *ngIf="AuthorizationDetail.Table[0].DivisionName">
+                       <div class="col-sm-6 col-xs-6 rightpadding">
+                         <b>Division</b>
+                       </div>
+                      <div class="col-sm-6 col-xs-6 rightpadding">
+                        : {{AuthorizationDetail.Table[0].DivisionName}}
+                      </div>
+                    </div>
+                    
+                    <div class="row rightpadding">
+                       <div class="col-sm-6 col-xs-6 rightpadding">
+                          <b>Document Type</b>
+                       </div>
+                       <div class="col-sm-6 col-xs-6 rightpadding">
+                        : {{AuthorizationDetail.Table[0]["DocumentType"]}}
+                       </div>
+                     </div>
+                     <div class="row rightpadding">
+                         <div class="col-sm-6 col-xs-6 rightpadding">
+                            <b>Purchase Type</b>
+                         </div>
+                         <div class="col-sm-6 col-xs-6 rightpadding">
+                          : {{AuthorizationDetail.Table[0]["PurchaseType"]}}
+                         </div>
+                     </div>
+                     <div class="row rightpadding">
+                         <div class="col-sm-6 col-xs-6 rightpadding">
+                            <b>Purchase Category</b>
+                         </div>
+                         <div class="col-sm-6 col-xs-6 rightpadding">
+                          : {{AuthorizationDetail.Table[0]["PurchaseCategory"]}}
+                         </div>
+                     </div>
+                     <div class="row rightpadding">
+                         <div class="col-sm-6 col-xs-6 rightpadding">
+                            <b>Ref. Doc. Type</b>
+                         </div>
+                         <div class="col-sm-6 col-xs-6 rightpadding">
+                          : {{AuthorizationDetail.Table[0]["RefDocumentType"]}}
+                         </div>
+                       </div> 
+                          
+                 </div>   
+             </div>
+             
+             <div class= "col-md-6 col-sm-6 col-xs-12 rightpadding">
+                 <div class="container-fluid">
+                     <!--
+                    <div class = "row rightpadding">
+                      <div class= "col-sm-12 col-xs-12 rightpadding">
+                         <div class="highlight1"> Vendor </div>
+                      </div>
+                    </div>-->
+                    <div class = "row rightpadding"> 
+                      <div class="col-sm-2 col-xs-6 rightpadding">
+                         <b>Vendor Name</b>
+                      </div>
+                      <div class= "col-sm-10 col-xs-6 rightpadding">
+                        : {{AuthorizationDetail.Table[0].VendorName}}
+                      </div>
+                    </div>
+                    <div class="row rightpadding">
+                      <div class="col-sm-2 col-xs-6 rightpadding">
+                        <b>Location</b>
+                      </div>
+                      <div class="col-sm-10 col-xs-6 rightpadding">
+                        : {{AuthorizationDetail.Table[0].VendorLocation}}
+                      </div>
+                    </div> 
+                    <div class="row rightpadding">
+                        <div class="col-sm-2 col-xs-6 rightpadding">
+                           <b>Contact Person</b>
+                        </div>
+                        <div class="col-sm-10 col-xs-6 rightpadding">
+                        : {{AuthorizationDetail.Table[0].ContactPerson}}
+                        </div>
+                    </div>   
+                    <div class="row rightpadding">
+                      <div class="col-sm-2 col-xs-6 rightpadding">
+                         <b>GSTIN No.</b>
+                      </div>
+                      <div class="col-sm-10 col-xs-6 rightpadding">
+                      : {{AuthorizationDetail.Table[0].GSTINNo}}
+                      </div>
+                  </div>   
+                 </div>   
+             </div>
+ 
+             <div class= " col-md-3 col-sm-6 col-xs-12 rightpadding">
+                 <div class="container-fluid">
+                  <!--
+                    <div class = "row rightpadding">
+                      <div class= "col-sm-12 col-xs-12 rightpadding">
+                         <div class="highlight1"> Consignee </div>
+                      </div>
+                    </div>  -->
+                    <div class = "row rightpadding">
+                      <div class="col-sm-6 col-xs-6 rightpadding">
+                        <b>Validity Date</b>
+                      </div>
+                      <div class= "col-sm-6 col-xs-6 rightpadding">
+                        : {{AuthorizationDetail.Table[0].ValidityDate}}
+                      </div>
+                    </div>
+                    <div class="row rightpadding">
+                      <div class="col-sm-6 col-xs-6 rightpadding">
+                         <b>Reference No.</b>
+                      </div>
+                      <div class="col-sm-6 col-xs-6 rightpadding">
+                        : <div *ngIf="AuthorizationDetail.Table[0].ReferenceNo">{{AuthorizationDetail.Table[0].ReferenceNo}} ({{AuthorizationDetail.Table[0].ReferenceDate}}) </div>
+                      </div>
+                    </div>
+                    
+                    <div class="row rightpadding">
+                            <div class="col-sm-6 col-xs-6 rightpadding">
+                               <b>Dept. Name</b>
+                            </div>
+                            <div class="col-sm-6 col-xs-6 rightpadding">
+                              : {{AuthorizationDetail.Table[0].DeptName}}
+                            </div>
+                    </div>
+                    <div class="row rightpadding">
+                            <div class="col-sm-6 col-xs-6 rightpadding">
+                               <b>Net Amount</b>
+                            </div>
+                            <div class="col-sm-6 col-xs-6 rightpadding">
+                              : {{AuthorizationDetail.Table[0]["Net Amount"] | number :'1.2-2'}}
+                            </div>
+                    </div>     
+                 </div>   
+             </div>
+ 
+             
+ 
+ 
+ 
+           </div>
+           <div class="row">
+              <div class= "col-sm-6 col-xs-12 rightpadding">
+                <div class="container-fluid">
+                  <div class = "row ">
+                    <div class= "col-sm-3 col-xs-12 ">
+                         <b>Remarks</b>
+                    </div>
+                    <div class= "col-sm-9 col-xs-12 rightpadding" style="margin-left: -5px">
+                         <span class="hidden-xs">:</span>   {{AuthorizationDetail.Table[0]["Remarks"]}}
+                    </div>
+                  </div>
+                </div>  
+              </div>
+           </div>
+         </div>
+ 
+         <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                 <div class="highlight2" (click)="OpenID = (OpenID)?false:true;" style="margin-top:5px;" *ngIf="AuthorizationDetail.Table1.length !==0">Item Detail
+                  <span class="pull-right material-icons" *ngIf="OpenID"> expand_less </span>
+                  <span class="pull-right material-icons" *ngIf="!OpenID"> expand_more </span>
+
+                
+                </div>
+
+              </div>
+            </div>
+            <div class="row"  [ngClass]="{'expand':OpenID,'collapse':!OpenID }"  *ngFor = "let AuthDetail of AuthorizationDetail.Table1" 
+            style="padding:8px;border-bottom:1px solid #efefef;margin-bottom:5px;">
+               <div class="col-sm-12 col-xs-12">
+                 <div class="container-fluid">
+                   <div class="row" >
+                     <div class = "col-sm-4 col-xs-6">
+                       <div class = "container-fluid">
+                         <div class="row">
+                           <div class="col-sm-12 col-xs-12">
+                             <div style="color:#28429a;"> <b>{{AuthDetail["Item Description"]}}( {{AuthDetail["Item Code"]}})</b></div> 
+                           </div>  
+                         </div>
+                         <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                              <b>Make</b> : {{AuthDetail["Make"]}}
+                            </div>
+                         </div>
+                         <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                              <b>HSN/SAC Code</b> : {{AuthDetail["HSNSAC Code"]}}
+                            </div>
+                         </div>
+                         <div class="row">
+                                <div class="col-sm-12 col-xs-12">
+                                  <b>Tech. Specification</b> : {{AuthDetail["Tech. Specification"]}}
+                                </div>
+                         </div>
+                        </div>   
+                     </div>
+                     <div class="col-sm-8 col-xs-6">
+                       <div class="container-fluid">
+                          <div class="row leftpadding rightpadding">
+                            <div class="col-sm-6 col-xs-12 leftpadding rightpadding">
+                               
+                               
+
+
+                               <div class = "container-fluid">
+                                    
+                                    <div class="row">
+                                       <div class="col-sm-12 col-xs-12">
+                                         <b>Unit</b> : {{AuthDetail["Unit"]}}
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-sm-12 col-xs-12">
+                                         <b>Quantity</b> : {{AuthDetail["Quantity"] | number :'1.3-3'}}
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                           <div class="col-sm-12 col-xs-12">
+                                             <b>Rate</b> : {{AuthDetail["Rate"] | number :'1.2-2'}}
+                                           </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-sm-12 col-xs-12">
+                                              <b>Basic Amount</b> : {{AuthDetail["Basic Amount"] | number :'1.2-2'}}
+                                            </div>
+                                         </div>
+                                         <div class="row">
+                                                <div class="col-sm-12 col-xs-12">
+                                                  <b>Net Amount</b> : {{AuthDetail["Net Amount"] | number :'1.2-2'}}
+                                                </div>
+                                         </div>
+                                </div> 
+
+
+
+                            </div>
+                            <div class="col-sm-6 col-xs-12 leftpadding rightpadding">
+                             
+                               
+
+                              <div class = "container-fluid">
+                                    
+                                <div class="row">
+                                   <div class="col-sm-12 col-xs-12">
+                                     <b>Tolerance Basis</b> : {{AuthDetail["Tolerance Basis"]}}
+                                   </div>
+                                </div>
+                                <div class="row">
+                                   <div class="col-sm-12 col-xs-12">
+                                     <b>Tolerance (-/+)</b> : <span *ngIf="(AuthDetail['ToleranceMinus'] || AuthDetail['ToleranceMinus'] == 0) || (AuthDetail['TolerancePlus'] || AuthDetail['TolerancePlus'] == 0) ">({{AuthDetail["ToleranceMinus"] | number : '1.3-3'}}/{{AuthDetail["TolerancePlus"] | number : '1.3-3'}})</span>
+                                   </div>
+                                </div>
+                           
+                                <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                          <b>Cost Center</b> : {{AuthDetail["Cost Center"]}}
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                            <div class="col-sm-12 col-xs-12">
+                                              <b>Remarks</b> : {{AuthDetail["Remarks"]}}
+                                            </div>
+                                     </div>
+                              </div> 
+
+
+
+                            </div>
+                            
+ <!--                           <div class="col-sm-2 col-xs-12">
+                              <div class="container-fluid">
+                                <div class="row leftpadding rightpadding">
+                                  <div class="col-sm-12 col-xs-12 leftpadding rightpadding">
+                                    <b>IGST</b> : {{AuthDetail.IGST}} %
+                                  </div>
+                                </div>
+                                <div class="row leftpadding rightpadding">
+                                  <div class="col-sm-12 col-xs-12 leftpadding rightpadding">
+                                    {{AuthDetail.IGSTValue}}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+ 
+                            <div class="col-sm-2 col-xs-12">
+                               <div class="container-fluid">
+                                 <div class="row leftpadding rightpadding">
+                                   <div class="col-sm-12 col-xs-12 leftpadding rightpadding">
+                                     <b>CGST</b> : {{AuthDetail.CGST}} %
+                                   </div>
+                                 </div>
+                                 <div class="row leftpadding rightpadding">
+                                   <div class="col-sm-12 col-xs-12 leftpadding rightpadding">
+                                     {{AuthDetail.CGSTValue}}
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+ 
+                             <div class="col-sm-2 col-xs-12">
+                                 <div class="container-fluid">
+                                   <div class="row leftpadding rightpadding">
+                                     <div class="col-sm-12 col-xs-12 leftpadding rightpadding">
+                                       <b>SGST</b> : {{AuthDetail.SGST}} %
+                                     </div>
+                                   </div>
+                                   <div class="row leftpadding rightpadding">
+                                     <div class="col-sm-12 col-xs-12 leftpadding rightpadding">
+                                       {{AuthDetail.SGSTValue}}
+                                     </div>
+                                   </div>
+                                 </div>
+                             </div>             -->
+ 
+                          </div>
+                       </div>
+                        
+                     </div>
+                     
+                   </div>
+ 
+                    
+                 </div>
+               </div>
+ <!--              <div class="col-sm-2 col-xs-12">
+                 <b>Net Amt</b> :  {{AuthDetail.NetAmt}}
+               </div>           
+ -->
+ 
+             </div>
+ 
+             <div class="row">
+                 <div class="col-sm-12 col-xs-12">
+                    <div class="highlight2" (click)="OpenSD = (OpenSD)?false:true;" style="margin-top:5px;" *ngIf="AuthorizationDetail.Table2.length !==0">Indent Detail
+                      <span class="pull-right material-icons" *ngIf="OpenSD"> expand_less </span>
+                      <span class="pull-right material-icons" *ngIf="!OpenSD"> expand_more </span>
+                     
+                    </div>
+                 </div>
+             </div>
+
+              <div class="row "  [ngClass]="{'expand':OpenSD,'collapse':!OpenSD }" *ngFor = "let AuthDetail of AuthorizationDetail.Table2" style="padding:8px;border-bottom:1px solid #efefef;margin-bottom:5px;">
+                 <div class="col-sm-12 col-xs-12">
+                  <div class="container-fluid">
+                    <div class="row" >
+                      <div class = "col-sm-4 col-xs-6">
+                        <div class = "container-fluid">
+                          <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                               <b>Indent No.</b> : {{AuthDetail["IndentNo"]}}( {{AuthDetail["DocumentDate"]}}) 
+                            </div>  
+                          </div>
+                          <div class="row">
+                             <div class="col-sm-12 col-xs-12">
+                               <b>Company</b> : {{AuthDetail["Company"]}}
+                             </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                              <b>Requested By</b> : {{AuthDetail["RequestedBy"]}}
+                            </div>
+                         </div>
+                         </div>   
+                      </div>
+                      <div class="col-sm-8 col-xs-6">
+                        <div class="container-fluid">
+                           <div class="row leftpadding rightpadding">
+                             <div class="col-sm-6 col-xs-12 leftpadding rightpadding">
+                                
+                                
+ 
+ 
+                                <div class = "container-fluid">
+                                     
+                                     <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                          <b>Item Code</b> : {{AuthDetail["ItemCode"]}}
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                          <b>Item Desc.</b> : {{AuthDetail["ItemDescription"]}}
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                            <div class="col-sm-12 col-xs-12">
+                                              <b>Make</b> : {{AuthDetail["Make"]}}
+                                            </div>
+                                     </div>
+                                     <div class="row">
+                                             <div class="col-sm-12 col-xs-12">
+                                               <b>Tech. Specification</b> : {{AuthDetail["TechSpecification"]}}
+                                             </div>
+                                          </div>
+                                          <div class="row">
+                                                 <div class="col-sm-12 col-xs-12">
+                                                   <b>Cost Center</b> : {{AuthDetail["CostCenter"]}}
+                                                 </div>
+                                          </div>
+                                 </div> 
+ 
+ 
+ 
+                             </div>
+                             <div class="col-sm-6 col-xs-12 leftpadding rightpadding">
+                              
+                                
+ 
+                               <div class = "container-fluid">
+                                     
+                                 <div class="row">
+                                    <div class="col-sm-12 col-xs-12">
+                                      <b>Indent Qty.</b> : {{AuthDetail["IndentQty"] | number :'1.3-3'}}
+                                    </div>
+                                 </div>
+                                 <div class="row">
+                                    <div class="col-sm-12 col-xs-12">
+                                      <b>PO Qty.</b> : {{AuthDetail["POQty"] | number :'1.3-3'}}
+                                    </div>
+                                 </div>
+
+                               </div> 
+ 
+ 
+ 
+                             </div>
+                             
+
+  
+                           </div>
+                        </div>
+                         
+                      </div>
+                      
+                    </div>
+  
+                     
+                  </div>
+               </div>           
+    
+              </div>
+
+                <div class="row">
+                  <div class="col-sm-12 col-xs-12">
+                     <div class="highlight2"  style="margin-top:5px;" id="authDetail" (click)="OpenAC = (OpenAC)?false:true;" *ngIf="AuthorizationDetail.Table7.length !== 0">Transportation Route
+                       <span class="pull-right material-icons" *ngIf="OpenAC"> expand_less </span>
+                       <span class="pull-right material-icons" *ngIf="!OpenAC"> expand_more </span>
+                      </div>
+                  </div>
+               </div>
+      
+ 
+               <div class="row"  [ngClass]="{'expand':OpenAC,'collapse':!OpenAC }" *ngFor = "let AuthDetail of AuthorizationDetail.Table7" 
+                 style="padding-left:8px; border-bottom:1px solid #efefef;">
+                 <div class="col-sm-12 col-xs-12">
+                  <div class="container-fluid">
+                    <div class="row" >
+                      <div class = "col-sm-4 col-xs-6">
+                        <div class = "container-fluid">
+                          <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                               <b>Route Id</b> : {{AuthDetail["Route Id"]}} 
+                            </div>  
+                          </div>
+                          <div class="row">
+                             <div class="col-sm-12 col-xs-12">
+                               <b>Item Desc.</b> : {{AuthDetail["Item Description"]}}
+                             </div>
+                          </div>
+                         </div>   
+                      </div>
+                      <div class="col-sm-8 col-xs-6">
+                        <div class="container-fluid">
+                           <div class="row leftpadding rightpadding">
+                             <div class="col-sm-4 col-xs-12 leftpadding rightpadding">
+                                
+                                
+ 
+ 
+                                <div class = "container-fluid">
+                                     
+                                     <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                          <b>Transportation Mode</b> : {{AuthDetail["Transportation Mode"]}}
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                          <b>Freight Type</b> : {{AuthDetail["Freight Type"]}}
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                            <div class="col-sm-12 col-xs-12">
+                                              <b>Freight Nature</b> : {{AuthDetail["Freight Nature"]}}
+                                            </div>
+                                     </div>
+                                     <div class="row">
+                                             <div class="col-sm-12 col-xs-12">
+                                               <b>Freight Amount</b> : {{AuthDetail["Freight Amount"]}}
+                                             </div>
+                                          </div>
+                                 </div> 
+ 
+ 
+ 
+                             </div>
+                             <div class="col-sm-4 col-xs-12 leftpadding rightpadding">
+                              
+                                
+ 
+                               <div class = "container-fluid">
+                                     
+                                 <div class="row">
+                                    <div class="col-sm-12 col-xs-12">
+                                      <b>No. of Trips</b> : {{AuthDetail["No of trips"]}}
+                                    </div>
+                                 </div>
+                                 <div class="row">
+                                    <div class="col-sm-12 col-xs-12">
+                                      <b>From Location</b> : {{AuthDetail["From Location"]}}
+                                    </div>
+                                 </div>
+                                 <div class="row">
+                                  <div class="col-sm-12 col-xs-12">
+                                    <b>To Location</b> : {{AuthDetail["To Location"]}}
+                                  </div>
+                                 </div>
+                                 <div class="row">
+                                  <div class="col-sm-12 col-xs-12">
+                                    <b>WareHouse</b> : {{AuthDetail["WareHouse"]}}
+                                  </div>
+                                 </div>
+                               </div> 
+ 
+ 
+ 
+                             </div>
+                             <div class="col-sm-4 col-xs-12 leftpadding rightpadding">
+                                
+                                
+ 
+ 
+                              <div class = "container-fluid">
+                                   
+                                   <div class="row">
+                                      <div class="col-sm-12 col-xs-12">
+                                        <b>Tolerance Basis</b> : {{AuthDetail["Tolerance Basis"]}}
+                                      </div>
+                                   </div>
+                                   <div class="row">
+                                      <div class="col-sm-12 col-xs-12">
+                                        <b>Tolerance Minus</b> : {{AuthDetail["Tolerance Minus"]}}
+                                      </div>
+                                   </div>
+                                   <div class="row">
+                                          <div class="col-sm-12 col-xs-12">
+                                            <b>Tolerance Plus</b> : {{AuthDetail["Tolerance Plus"]}}
+                                          </div>
+                                   </div>
+                                   <div class="row">
+                                           <div class="col-sm-12 col-xs-12">
+                                             <b>Receipient</b> : {{AuthDetail["Receipient"]}}
+                                           </div>
+                                        </div>
+                                        <div class="row">
+                                               <div class="col-sm-12 col-xs-12">
+                                                 <b>Freight Order</b> : {{AuthDetail["Freight Order"]}}
+                                               </div>
+                                        </div>
+                               </div> 
+
+
+
+                           </div>
+
+  
+                           </div>
+                        </div>
+                         
+                      </div>
+                      
+                    </div>
+  
+                     
+                  </div>
+                 </div>    
+               </div>
+
+
+
+          <!--Inject Table here-->
+          <div class="row">
+            <div class="col-sm-12 col-xs-12">
+               <div class="highlight2"  style="margin-top:5px;"  (click)="OpenAS = (OpenAS)?false:true;" *ngIf="AuthorizationDetail.Table[0].FreightType">Shipment Detail
+                 <span class="pull-right material-icons" *ngIf="OpenAS"> expand_less </span>
+                 <span class="pull-right material-icons" *ngIf="!OpenAS"> expand_more </span>
+                </div>
+            </div>
+         </div>
+
+          <div class="row" [ngClass]="{'expand':OpenAS,'collapse':!OpenAS }" *ngIf="AuthorizationDetail.Table[0].FreightType"
+               style="padding-left:8px;">
+              <div class="col-sm-12 col-xs-12">
+                  <div class="container-fluid">
+                      <div class="row" >
+                          <div class = "col-md-4 col-xs-6">
+                               <b>Freight Type</b> : {{AuthorizationDetail.Table[0].FreightType}}
+                           </div>
+                           <div class= "col-md-4 col-xs-6">
+                               <b>From Location</b> : {{AuthorizationDetail.Table[0].FromLocation}}
+                           </div>
+                           <div class= "col-md-4 col-xs-6">
+                               <b>To Location</b> : {{AuthorizationDetail.Table[0].ToLocation}}
+                           </div>
+                       </div>
+                      
+                      
+                   </div>
+                </div>
+           </div>
+          <!--Injection Ends here-->
+
+          <div class="row">
+            <div class="col-sm-12 col-xs-12">
+               <div class="highlight2" (click)="OpenTax = (OpenTax)?false:true;" style="margin-top:5px;" *ngIf="AuthorizationDetail.Table3.length !==0">Tax Detail
+                <span class="pull-right material-icons" *ngIf="OpenTax"> expand_less </span>
+                <span class="pull-right material-icons" *ngIf="!OpenTax"> expand_more </span>
+
+              
+              </div>
+
+            </div>
+          </div>
+          <div class="row" [ngClass]="{'expand':OpenTax,'collapse':!OpenTax }" *ngIf="AuthorizationDetail.Table3.length !==0"
+          style="padding:8px;border-bottom:1px solid #efefef;margin-bottom:5px;">
+            <div class="col-sm-12 col-xs-12" style="color:#28429a;">
+                <b>Basic Amount</b> : {{AuthorizationDetail.Table[0]["Basic Amount"] | number :'1.2-2'}}
+            </div> 
+
+          </div>
+          <div class="row"  [ngClass]="{'expand':OpenTax,'collapse':!OpenTax }"  *ngFor = "let AuthDetail of AuthorizationDetail.Table3" 
+          style="padding:8px;border-bottom:1px solid #efefef;margin-bottom:5px;">
+             <div class="col-sm-12 col-xs-12">
+               <div class="container-fluid">
+                 <div class="row" >
+                   <div class = "col-sm-4 col-xs-6">
+                     <div class = "container-fluid">
+                       
+                       <div class="row">
+                          <div class="col-sm-12 col-xs-12">
+                            <b>Charge Name</b> : {{AuthDetail["Charge Name"]}}
+                          </div>
+                       </div>
+                      </div>   
+                   </div>
+                   <div class="col-sm-8 col-xs-6">
+                     <div class="container-fluid">
+                        <div class="row leftpadding rightpadding">
+                          <div class="col-sm-2 col-xs-12 leftpadding rightpadding">
+                             <b>Charge Type</b> : {{AuthDetail["Charge Type"]}}
+                          </div>
+                          <div class="col-sm-2 col-xs-12 leftpadding rightpadding">
+                            <b>Nature</b> : {{AuthDetail["Nature"]}}
+                          </div>
+                          <div class="col-sm-2 col-xs-12 leftpadding rightpadding">
+                            <b>Charge On</b> : {{AuthDetail["Charge On"]}}
+                          </div>
+                          <div class="col-sm-2 col-xs-12 leftpadding rightpadding">
+                           <b>Charge Value</b> : {{AuthDetail["Charge Value"] | number :'1.3-3'}}
+                         </div>
+                         <div class="col-sm-2 col-xs-12 leftpadding rightpadding">
+                           <b>Total Value</b> : {{AuthDetail["Total Value"] | number :'1.2-2'}}
+                         </div>
+                     
+
+                        </div>
+                     </div>
+                      
+                   </div>
+                   
+                 </div>
+
+                  
+               </div>
+             </div>
+
+
+           </div>
+           <div class="row" [ngClass]="{'expand':OpenTax,'collapse':!OpenTax }" *ngIf="AuthorizationDetail.Table3.length !==0">
+              <div class="col-sm-12 col-xs-12" style="color:#28429a;">
+                  <b>Net Amount</b> : {{AuthorizationDetail.Table[0]["Net Amount"] | number :'1.2-2'}}
+              </div> 
+  
+            </div>
+
+
+      
+ 
+              <div class="row">
+                  <div class="col-sm-12 col-xs-12">
+                     <div class="highlight2" style="margin-top:5px;" (click)="OpenPH = (OpenPH)?false:true;" *ngIf="AuthorizationDetail.Table6.length !==0">Other Expenses                      
+                      <span class="pull-right material-icons" *ngIf="OpenPH"> expand_less </span>
+                      <span class="pull-right material-icons" *ngIf="!OpenPH"> expand_more </span>
+
+                     </div>
+                  </div>
+              </div>
+              <div  [ngClass]="{'expand':OpenPH,'collapse':!OpenPH }" style="overflow-x:hidden;padding-left:10px;">
+                 <div class="row"  *ngFor = "let AuthDetail of AuthorizationDetail.Table6;let i = index;" 
+                 style="padding-left:8px;border-bottom:1px solid #efefef;">
+                   <div class="col-sm-12 col-xs-12">
+                  <div class="container-fluid">
+                    <div class="row" >
+                      <div class = "col-sm-4 col-xs-6">
+                        <div class = "container-fluid">
+                          
+                          <div class="row">
+                             <div class="col-sm-12 col-xs-12">
+                               <b>Expense Head</b> : {{AuthDetail["Expense Head"]}}
+                             </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                              <b>Item Desc.(Make)</b> : {{AuthDetail["Item Description"]}} <span *ngIf='AuthDetail["MakeName"]'>({{AuthDetail["MakeName"]}})</span>
+                            </div>
+                         </div>
+                         </div>   
+                      </div>
+                      <div class="col-sm-8 col-xs-6">
+                        <div class="container-fluid">
+                           <div class="row leftpadding rightpadding">
+                             <div class="col-sm-2 col-xs-12 leftpadding rightpadding">
+                                <b>Nature</b> : {{AuthDetail["Nature"]}}
+                             </div>
+                             <div class="col-sm-2 col-xs-12 leftpadding rightpadding">
+                               <b>Billing Location</b> : {{AuthDetail["Billing Location"]}}
+                             </div>
+                             <div class="col-sm-2 col-xs-12 leftpadding rightpadding">
+                               <b>Billing Qty.</b> : {{AuthDetail["Billing Qty."]}}
+                             </div>
+                             <div class="col-sm-2 col-xs-12 leftpadding rightpadding">
+                              <b>Rate Basis</b> : {{AuthDetail["Rate Basis"]}}
+                            </div>
+                            <div class="col-sm-2 col-xs-12 leftpadding rightpadding">
+                              <b>Rate</b> : {{AuthDetail["Rate"] | number:'1.2-2'}}
+                            </div>
+                            <div class="col-sm-2 col-xs-12 leftpadding rightpadding">
+                             <b>Party Name</b> : {{AuthDetail["Party Name"]}}
+                           </div>
+   
+                           </div>
+                        </div>
+                         
+                      </div>
+                      
+                    </div>
+   
+                     
+                  </div>
+                   </div>
+                 </div>
+              </div>
+ 
+
+
+            
+
+
+             <div class="row">
+                 <div class="col-sm-12 col-xs-12">
+                    <div class="highlight2" style="margin-top:5px;" (click)="OpenTNC = (OpenTNC)?false:true;" *ngIf="AuthorizationDetail.Table4.length !== 0">Terms & Condition
+                      <span class="pull-right material-icons" *ngIf="OpenTNC"> expand_less </span>
+                      <span class="pull-right material-icons" *ngIf="!OpenTNC"> expand_more </span>
+                    </div>
+                 </div>
+             </div>
+             <div class="row"  [ngClass]="{'expand':OpenTNC,'collapse':!OpenTNC }" *ngFor = "let AuthDetail of AuthorizationDetail.Table4" 
+             style="padding-left:8px;border-bottom:1px solid #efefef;">
+               <div class="col-sm-12 col-xs-12">
+                  <div class="container-fluid">
+                      <div class="row" >
+                        <div class = "col-md-2 col-xs-5">
+                          <b>{{AuthDetail.TermsNConditionHeadName}}</b>
+                        </div>
+                        <div class = "col-md-10 col-xs-7">
+                          : {{AuthDetail.TermsNCondition}}
+                        </div>
+                      </div>
+                  </div>
+               </div>
+            </div>
+ 
+            <div class="row">
+               <div class="col-sm-12 col-xs-12">
+                  <div class="highlight2" style="margin-top:5px;" (click)="OpenPT = (OpenPT)? false:true;" *ngIf="AuthorizationDetail.Table5.length !==0">Payment Terms
+                    <span class="pull-right material-icons" *ngIf="OpenPT"> expand_less </span>
+                    <span class="pull-right material-icons" *ngIf="!OpenPT"> expand_more </span>
+                  </div>
+               </div>
+            </div>
+            <div class="row"  [ngClass]="{'expand':OpenPT,'collapse':!OpenPT }" *ngFor = "let AuthDetail of AuthorizationDetail.Table5" 
+             style="padding-left:8px; border-bottom:1px solid #efefef;">
+               <div class="col-sm-12 col-xs-12">
+                  <div class="container-fluid">
+                      <div class="row" >
+                        <div class = "col-md-12 col-xs-12">
+                          <strong>{{AuthDetail.PaymentType}}</strong> {{AuthDetail.PayValue | number :'1.2-2'}}% within {{AuthDetail.NoOfDays}} days. Base Date Type : <b>{{AuthDetail.BaseDate}}</b>, Pay On : <b>{{AuthDetail.PayOn}}</b>
+                        </div>
+                        
+                      </div>
+                  </div>
+               </div>
+            </div>
+            
+            <!--Insert Here-->
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                 <div class="highlight2" (click)="OpenAttachment = (OpenAttachment)?false:true;" style="margin-top:5px;" *ngIf="AuthorizationDetail.Table9.length !==0">Attachment
+                   <span class="pull-right material-icons" *ngIf="OpenAttachment"> expand_less </span>
+                   <span class="pull-right material-icons" *ngIf="!OpenAttachment"> expand_more </span>
+                  
+                 </div>
+              </div>
+          </div>
+
+           <div class="row hover"  [ngClass]="{'expand':OpenAttachment,'collapse':!OpenAttachment }" 
+           *ngFor = "let AuthDetail of AuthorizationDetail.Table9" (click)="DownLoadFile(AuthDetail.DocNo)" 
+           style="padding:8px;border-bottom:1px solid #efefef;margin-bottom:5px;">
+              <div class="col-sm-12 col-xs-12 DownLink">
+               
+                <span>
+                            <span class="pull-left material-icons md-9" style="font-size: 20px"> insert_drive_file </span>
+                            <b>{{AuthDetail["DocName"]}}{{AuthDetail["DocType"]}}</b>  ({{FileSize(AuthDetail.DocSize,2)}})
+                </span>            
+                            <span class=" material-icons" style="font-size: 20px"> save_alt </span>
+               
+            </div>           
+ 
+           </div>
+
+            <!--Insertion End-->
+
+
+
+
+
+
+            <div class="row">
+               <div class="col-sm-12 col-xs-12">
+                  <div class="highlight2"  style="margin-top:5px;" id="authDetail" (click)="OpenAD = (OpenAD)?false:true;">Authorization Detail
+                    <span class="pull-right material-icons" *ngIf="OpenAD"> expand_less </span>
+                    <span class="pull-right material-icons" *ngIf="!OpenAD"> expand_more </span>
+                  </div>
+               </div>
+            </div>
+ 
+            <div class="row"  [ngClass]="{'expand':OpenAD,'collapse':!OpenAD }" *ngFor = "let AuthDetail of AuthorizationDetail.Table8" 
+             style="padding-left:8px; border-bottom:1px solid #efefef;">
+               <div class="col-sm-12 col-xs-12">
+                  <div class="container-fluid">
+                      <div class="row" >
+                        <div class = "col-sm-4 col-xs-6">
+                            <div class="container-fluid">
+                              <div class="row">
+                                <div class = "col-sm-12 col-xs-12">
+                                  <b>{{AuthDetail.Level}}</b>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class= "col-sm-12 col-xs-12">
+                                  {{AuthDetail.UserName}}
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-xs-6">
+                            <div class="container-fluid">
+                              <div class="row">
+                                <div class="col-sm-3 col-xs-12">
+                                  <div><b>Status</b></div>
+                                  <div>{{AuthDetail.StatusName}}</div>
+                                </div>
+                                <div class="col-sm-3 col-xs-12">
+                                  <div><b>Comment</b></div>
+                                  <div>{{AuthDetail.Comment}}</div> 
+                                </div>
+                                <div class="col-sm-3 col-xs-12">
+                                  <div><b>Last Status</b></div>
+                                  <div>{{AuthDetail.LastStatus}}</div>
+                               </div>
+                                <div class="col-sm-3 col-xs-12">
+                                  <div><b>Last Comment</b></div>
+                                  <div>{{AuthDetail.LastComment}}</div>
+                                </div>
+
+                              </div>
+                            </div>
+                        </div>                       
+                      </div>
+                  </div>
+               </div>
+            </div>
+ 
+
+                        
+
+
+
+         </div>
+       </div>
+      </div>
+ </div>
+
+ <div class="bottomBar" *ngIf="AuthorizationDetail.Table">
+  <div *ngIf="!IsRejection"> 
+       <button class="pull-right btn btn-sm btn-danger" (click)="StatusNo=9;Comment=null;updateStatus()" [disabled]="!AuthorizationDetail.Table[0].AuthDetailNo">Reject</button>
+       <button class="pull-right btn btn-sm btn-success" (click)="StatusNo=13;updateStatus()"  [disabled]="!AuthorizationDetail.Table[0].AuthDetailNo ">Approve</button>
+  </div>
+
+  <button class="pull-left btn btn-sm btn-primary authorizationButton"  (click)="scrollToAuthorization('authDetail')" >Authorization Detail</button>
+
+  
+ </div>
+ 
+ <div class="modals" *ngIf="ShowRejectionPopUp">
+
+   <div class="inputArea">
+      <b >Rejection Reason</b>
+      <div style="margin: 10px 0px;">
+        <textarea maxlength="1000" [(ngModel)]="Comment" style="height:100px;width: 100% !important;padding: 4px;font-size: 12px;">
+
+        </textarea>
+      </div>
+      <div>
+          <button class="btn btn-sm pull-right btn-danger" (click)="StatusNo=9;updateStatus()">Reject</button>
+          <button class="btn btn-sm pull-right btn-default" (click)="ShowRejectionPopUp=false">Cancel</button>
+      </div>
+   </div>
+
+ </div>

@@ -1,0 +1,79 @@
+<div [ngClass]="{overlay: isLoading}" *ngIf="isLoading">
+  <mat-progress-spinner class="example-margin" strokeWidth="3" [diameter]="30" [mode]="'indeterminate'" [value]="50"
+    style="margin-left: 50% !important;margin-top: 17% !important;">
+  </mat-progress-spinner>
+</div>
+
+<div class="row" *ngIf="!isLoading">
+  <div class="col-xs-12" style="padding:0px;padding-right:8px;">
+    <div
+      style="min-height:200px;background-color:white;margin-top:8px;padding:4px;background-color:white;min-height:300px;"
+      class="shadow">
+      <div style="padding:6px;padding-top:0px;margin-top:-4px;" *ngIf="FeatureToShow.DropDown">
+        <div class="pull-right" style="margin-top: -10px;">
+          <select [(ngModel)]="SelectedDrpDwn" (change)="ChangeInTile(ActiveBtnNo,SelectedDrpDwn)">
+            <option *ngFor="let item of DropDownData" [value]="item.Value">
+              {{item.Caption}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div style="min-height:10px;">
+      </div>
+      <div
+        style="position:absolute;min-height:10px;background:rgba(255,255,255,0.7);z-index:200;top:13px;transition:all 0.3s"
+        [ngClass]="{'showCurtainLeft':leftCurtain,'hideCurtainLeft':!leftCurtain}">
+        <span style="visibility:hidden">a</span>
+      </div>
+
+      <div *ngIf="FeatureToShow.Graph && GraphData.length > 0">
+        <google-chart #chart [data]="GraphData" [columns]="columnNames" [options]="options" [type]="type">
+        </google-chart>
+      </div>
+      <div *ngIf="FeatureToShow.Table" style="margin-left: 7px !important;overflow: auto;"
+        [ngStyle]="{'margin-top': FeatureToShow.Graph ? '15px': '1px'}">
+        <table class="table table-condensed table-responsive table-striped" id="vtable">
+          <thead style="background-color: #4589ffcf;">
+            <tr style="color:#fff;font-weight: normal;">
+              <th *ngFor="let th of TableHead">
+                <div style="text-align: right;" *ngIf="NumericCaptionArr.includes(th)">
+                  {{th}}</div>
+                <div *ngIf="!NumericCaptionArr.includes(th)">{{th}}</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let td of TableData" style="font-size:12px;font-weight: 500;">
+              <td *ngFor="let th of TableHead">
+                <div style="text-align: right;"
+                  *ngIf="NumericCaptionArr.includes(th) && !th.includes('%') && !th.includes('Amount')">
+                  {{td[th]}}</div>
+                <div *ngIf="!NumericCaptionArr.includes(th)">{{td[th]}}</div>
+                <div style="text-align: right;"
+                  *ngIf="NumericCaptionArr.includes(th) && th.includes('Amount') && !th.includes('%')">
+                  {{td[th] | currency:'INR':'symbol-narrow':'0.2-2'}}</div>
+                <div style="text-align: right;" *ngIf="NumericCaptionArr.includes(th) && th.includes('%')">{{td[th]}}
+                </div>
+              </td>
+
+              <!-- <div *ngFor="let th of TableHead">
+                <td *ngIf="NumericCaptionArr.indexOf(th) == -1">
+                  {{td[th]}}
+                </td>
+              </div> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="width:100%;" *ngIf="FeatureToShow.ActionBtn">
+        <div style="font-size:11px;font-weight:bold;min-height:14px;padding-left:20px;padding-right:20px;">
+        </div>
+        <div style="bottom: 4px !important;margin-left:5px;">
+          <span class="btn btn-default pull-left" [ngClass]="{'ActiveBtn':ActiveBtnNo == item.Value}"
+            style="font-size:11px;font-weight:bold;border-radius:0px;margin-left:5px;"
+            (click)="ChangeInTile(item.Value,SelectedDrpDwn)" *ngFor="let item of ActionBtnData">{{item.Caption}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

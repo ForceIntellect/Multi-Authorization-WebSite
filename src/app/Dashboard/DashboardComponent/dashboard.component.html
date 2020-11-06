@@ -1,0 +1,104 @@
+<div class="HeaderDiv">
+  Dashboard
+  <div class="pull-right hover" [routerLink]="[ '/Menu' ]" style="font-size: 12px;font-weight: bold">
+    Home
+  </div>
+  <div class="pull-right hover" style="font-size: 12px;font-weight: bold;margin-right: 10px;" (click)="LogOutDialog()">
+    Logout
+  </div>
+</div>
+<mat-sidenav-container fxFlexFill style="height:600vh;">
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
+      <a (click)="onDeptChangeEvent(item.ModuleNo,0);" mat-list-item *ngFor="let item of ModuleList">
+        {{item.ModuleName}}
+      </a>
+      <a (click)="sidenav.toggle()" mat-list-item>
+        <mat-icon>close</mat-icon> Close
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content style="overflow: hidden;">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-5" *ngIf="_blIsTabMode">
+          <mat-tab-group class="nav nav-pills nav-fill" (selectedTabChange)="onDeptChangeEvent($event,1);">
+            <mat-tab class="nav-item nav-link" *ngFor="let item of ModuleList" [label]="item.ModuleName">
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+        <div *ngIf="!_blIsTabMode" class="col-xs-2">
+          <mat-toolbar>
+            <button mat-icon-button class="example-icon" aria-label="Side Menu" (click)="sidenav.toggle()">
+              <mat-icon>menu</mat-icon>
+            </button>
+          </mat-toolbar>
+        </div>
+
+        <div [ngClass]="_blIsTabMode === true ? 'col-md-0' : 'col-xs-2'">
+
+          <div class="datepickerdiv">
+            <app-filter #DtpickerRef (EmitObj)="OnFilterChange($event)"></app-filter>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+    <div class="col-md-12">
+      <gridster [options]="options">
+
+        <gridster-item [item]="widget" *ngFor="let widget of DashboardArr;let i = index;"
+          [ngClass]="{ChangeOverFlow:1==1}" [ngStyle]="{'background': GetCardColorForTiles(widget)}">
+          <span>
+            <div>
+              <div style="padding-top:6px !important;" *ngIf="widget.Component == 'Tile'">
+                <mat-icon style="cursor:pointer;color: #fff;font-size:20px !important;float: right !important;"
+                  class="drag-handler">
+                  open_with</mat-icon>
+                <mat-icon style="cursor:pointer;color: #fff;font-size:20px !important;float: right !important;"
+                  title="{{widget.Info}}" *ngIf="widget.Info">
+                  info</mat-icon>
+              </div>
+              <div class="board" class="col-lg-12" style="padding:6px !important;">
+                <div class="header" *ngIf="widget.Component != 'Tile'">
+                  <div style="float: left;font-weight: 600;display:inline-flex;width: 220px;">
+                    <mat-icon style="cursor:pointer;" *ngIf="widget.icon">{{widget.icon}}</mat-icon>
+                    <mat-icon style="cursor:pointer;" *ngIf="!widget.icon">table_chart</mat-icon>
+                    {{widget.CardName}}
+                  </div>
+                  <div class="Two">
+                    <mat-icon style="cursor:pointer;color: #586069;font-size:20px !important" title="{{widget.Info}}"
+                      *ngIf="widget.Info">
+                      info</mat-icon>
+                    <mat-icon style="cursor:pointer;color: #586069;font-size:20px !important" class="drag-handler">
+                      open_with</mat-icon>
+                    <mat-icon style="cursor:pointer;color: #586069;font-size:20px !important"
+                      (click)="RefreshCard(widget.CardNo)">refresh</mat-icon>
+                    <mat-icon style="cursor:pointer;color: #586069;font-size:20px !important"
+                      (click)="DeleteFromDashboard(widget.CardNo)">delete
+                    </mat-icon>
+                  </div>
+                </div>
+                <ng-template appDashboardOutlet [item]="widget" #ItemsRef></ng-template>
+              </div>
+              <div class="showTile"
+                (click)="widget.Show = (widget.Show== false)?true:false;CardExpandOrCollapse(widget)"
+                *ngIf="widget.isExpand == 1">
+                <!-- *ngIf="widget.Component == 'List' || widget.Component == 'Progress'" -->
+                <span>
+                  <mat-icon *ngIf="!widget.Show">
+                    arrow_drop_down</mat-icon>
+                  <mat-icon *ngIf="widget.Show">
+                    arrow_drop_up</mat-icon>
+                </span>
+              </div>
+            </div>
+          </span>
+
+        </gridster-item>
+      </gridster>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

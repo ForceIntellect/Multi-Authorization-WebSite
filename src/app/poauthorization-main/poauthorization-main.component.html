@@ -1,0 +1,130 @@
+<style>
+  .col-sm-2,.col-xs-4,.col-sm-10,.col-xs-8,.col-xs-4{
+       padding: 0px;    
+  }
+  .form-control{
+
+    max-height: 25px;
+    border-radius: 0px;
+    font-size:13px;
+  }
+  label{
+    padding-top: 5px;
+  }
+  .hover{
+   cursor: pointer;
+  }
+</style>
+
+  <div class="container-fluid" style="Font-size:12px;padding: 0px;">
+      <div style="min-height: 40px;background-color: #757dd3;padding: 10px 10px;color: #fff;font-size: 15px">
+
+          SC Authorization
+          <div class="pull-right hover" [routerLink]="[ '/Menu' ]" style="font-size: 12px;font-weight: bold">Home</div>
+          <div class="pull-right hover" (click)="LogOutDialog()" style="font-size: 12px;font-weight: bold;margin-right: 10px;">Logout</div>
+      </div>
+   
+    <div style="min-height: 30px;border-bottom: 1px solid #efefef;padding: 10px;box-shadow: 0px 1px 3px #00000033">
+
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-sm-4 col-xs-12">
+               <div style="display: grid; grid-template-columns: 110px 200px">
+                     <div>
+                        <label style="vertical-align: middle">SC Order No.</label> 
+                     </div>
+                     <div>
+                        <input class="form-control" [(ngModel)]="filter.SCOrderNo" maxlength="30"/>
+                     </div>
+               </div>
+          </div>
+          <div class="col-sm-4 col-xs-12">
+              <div style="display: grid; grid-template-columns: 110px 100px">
+                    <div>
+                       <label style="vertical-align: middle">Document Status</label> 
+                    </div>
+                    <div>
+                      <select class="form-control" style="padding: 0px;" [(ngModel)]="filter.StatusNo">
+                          <option *ngFor="let option of FillValues.Table" value={{option.StatusNo}}>{{option.StatusName}}</option>
+                          <option  value=null></option>
+                      </select>
+                    </div>
+              </div>
+         </div>
+         <div class="col-sm-4 col-xs-12">
+            <div >
+                
+              <button (click)="searchAuthorizationData()" class="btn btn-sm pull-right btn-danger" style="border-radius:0px;box-shadow: 0px 1px 3px #00000022">Search</button>
+            </div>
+       </div>
+        </div>
+
+      </div>
+     
+
+    </div>
+  <div class="container-fluid" style="max-height: 60vh;overflow: auto;padding: 0px;">
+
+      <div class="row" *ngFor="let AuthData of AuthorizationData" (click)="loadData(AuthData.SCOrderAmendmentNo)" 
+      style="border:1px solid #efefef;margin:10px;box-shadow: 0px 1px 3px #00000011;Cursor:Pointer;padding: 0px;">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="container-fluid">
+              <div class="row" style="padding-top:10px;" >
+                <div class = "col-sm-10 col-xs-8">
+              <b>  {{AuthData.VendorName}}</b>
+                </div> 
+                 <div class = "col-sm-2 col-xs-4">
+                   <b> {{AuthData.DocumentNoYearly}} </b>  &nbsp; ({{AuthData.DocumentDate}}) 
+                
+                  </div>
+              </div>
+              <div class="row" style="padding-bottom:10px;">
+                 <div class = "col-lg-10 col-md-10 col-sm-10 col-xs-8" style="font-size: 11px;text-transform: uppercase ">
+                   {{AuthData.VendorAddress}}
+                 </div>
+                 <div class = "col-lg-2 col-md-2 col-sm-2 col-xs-4">
+                   <span class="pull-right" style="margin: 2px;border-radius: 2px;;padding: 2px 10px;background-color: #f08554;color:#fff">{{AuthData.Status}}</span>
+                 </div>
+              </div>
+              <div class="row" style="padding-bottom:5px;" *ngIf="AuthData.ItemDescription">
+                <div class = "col-lg-10 col-md-10 col-sm-10 col-xs-8">
+                  <b>Item Des.</b>: {{AuthData.ItemDescription}}
+                </div>
+                <div class = "col-lg-2 col-md-2 col-sm-2 col-xs-4"></div>
+             </div>
+              <div class="row" style="padding:8px;border-bottom:1px solid #efefef;border-top:1px solid #efefef">
+                <div class = "col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-xs-12">
+                         <div style="display: grid;grid-template-columns: 80px 200px">
+  
+                           <div>Net Amount</div>
+                           <div style="font-weight: bold"> : {{AuthData.NetAmount.toFixed(2)}}</div>
+  
+                         </div>
+                        
+                      </div> 
+                     
+                    </div>
+                  </div>
+                </div>
+       
+             </div>
+  
+  
+  
+          </div>
+  
+        </div>
+      </div>
+
+  </div>
+  <div *ngIf="!AuthorizationData.length" style="padding: 30px;text-align: center;font-weight: bold">
+
+     <span style="padding: 5px 20px;border-radius: 2px;;background-color: #efefef;"> No Data Found</span>
+
+  </div>
+  
+  </div>

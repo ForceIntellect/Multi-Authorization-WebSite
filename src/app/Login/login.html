@@ -1,0 +1,44 @@
+
+
+<style>
+    .txtCustomize{
+        padding: 8px;
+        border: 1px solid #e6e6e6;
+        width: 100%;
+        min-height: 35px !important;
+        border-radius: 3px;
+    }
+</style>
+
+<div style="min-height: 100vh;background-color: #f3f3f3;width: 100%;padding-top: 30px">
+ 
+    <!-- <div style="padding: 10px;background-color: #fff;box-shadow: 0px 0px 6px #00000022">
+
+        Real Deals Sales Portal
+    </div> -->
+
+    <div style="margin: 0 auto;width: 350px;padding: 20px;;height: auto;background-color: #fff;box-shadow: 0px 0px 6px #00000015;border-radius: 4px;;padding-top: 30px;"> <!--height: 400px-->
+
+        <div style="text-align: center;font-weight: bold;padding: 10px;border-bottom: 1px solid #efefef;font-size: 19px;">Welcome To   <b style="color: #33b950;overflow-wrap: break-word;">{{CompanyName}}</b></div>
+        <div style="font-size: 13px;text-align: center">Please login to continue</div>
+
+        <div style="padding: 10px;text-align: center;font-size: 15px;color: #c23737">
+            {{ErrorMsg}} <span style="visibility: hidden;">s</span>
+        </div>
+        <div style="margin-top: 0px;padding: 20px;">
+
+            <div>
+                <div style="font-size: 15px;font-weight: bold">User ID</div>
+                <div><input class="txtCustomize" [(ngModel)]="LoginDetail.LoginName" autofocus type="text"></div>
+            </div>
+            <div style="margin-top: 10px;">
+                <div style="font-size: 15px;font-weight: bold">Password</div>
+                <div><input class="txtCustomize" [(ngModel)]="LoginDetail.Pwd" type="password"></div>
+            </div>
+            <div style="padding: 20px;text-align: center;margin-top: 30px;"><button class= "btn btn-primary" style = "padding-left:50px;padding-right: 50px;border-radius: 3px;box-shadow: 0px 1px 3px #00000020;"  (click)="onLogin()" igxButton="raised">Login</button></div>
+
+        </div>
+
+    </div>
+    
+</div>

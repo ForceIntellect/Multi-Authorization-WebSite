@@ -1,0 +1,44 @@
+.OuterDiv {
+  font-size: 14px;
+  padding: 8px 4px 4px 4px;
+  color: #404040 !important;
+  border-radius: 0px;
+  text-align: center;
+  background-color: #fff;
+  font-weight: 600;
+  border-bottom: 2px solid #dfdfdf;
+  margin: 0px 20px;
+}
+.SecondDiv {
+  padding: 8px 14px 14px 21px;
+  font-family: "Roboto", "san-serif";
+}
+.firstTD {
+  font-weight: bold;
+  color: #e6752a;
+  border-top: none;
+  padding: 0px !important;
+  width: 170px !important;
+}
+
+.SecondTD {
+  padding: 0px !important;
+  font-size: 12px;
+  border-top: none;
+  vertical-align: top;
+  color: black;
+  font-weight: 600;
+}
+
+.popOverLable {
+  color: #202020;
+  font-size: 12px;
+}
+.ThirdTD {
+  padding: 0px !important;
+  font-size: 12px;
+  border-top: none;
+}
+::ng-deep .mat-dialog-container {
+  padding: 0px !important;
+}

@@ -1,0 +1,57 @@
+<mat-dialog-content>
+  <h5 style="text-align: center;font-weight: bold;">Dashboard Filter</h5>
+  <mat-divider></mat-divider>
+  <div class="row" style="font-size: 14px;" *ngIf="!IsModalOpen">
+    <p style="color: red;">* Select at least one company.</p>
+  </div>
+  <div class="row" style="display: inline-flex;">
+    <span style="background-color: #4589ff;border-radius: 3px;">
+      <label for="datepickerdiv" style="color: #fff;padding: 10px;height: 33px !important;">Date Range</label>
+    </span>
+    <div class="datepickerdiv" id="datepickerdiv">
+      <input matInput ngxDaterangepickerMd [showCustomRangeLabel]="true" [alwaysShowCalendars]="true" showCancel="true"
+        [ranges]="ranges" placeholder="Choose date" [(ngModel)]="selected" [customRangeDirection]="true"
+        [locale]="{applyLabel: 'Ok', format: 'DD/MM/YYYY'}" (change)="change($event)" class="dtprimary" #dtpicker
+        style="width: 90%;" />
+    </div>
+  </div>
+  <div class="row" style="display: inline-flex;">
+    <span style="height: 39px;background-color: #4589ff;    width: 94px;border-radius: 3px">
+      <label style="padding: 10px;color: #fff;">Company</label>
+    </span>
+    <div>
+      <mat-list-item class="primary-imenu-item" role="listitem">
+        <mat-form-field class="select-form">
+          <mat-select placeholder="Select Company" name="Company" class="filter-select" [(ngModel)]="selectedCompany"
+            [compareWith]="equals" multiple #companySelect (click) = "GetCompany()">
+
+            <mat-option disabled="disabled" class="filter-option">
+              <button mat-raised-button class="mat-primary fill text-sm" style="background-color:#4589ff"
+                (click)="selectAll(companySelect, AllCompanies, selectedCompany)">Select All
+              </button>
+              <button mat-raised-button class="mat-accent fill text-sm" style="background-color: #fff;margin-left:2px;"  (click)="deselectAll(companySelect)">
+                Deselect All
+              </button>
+            </mat-option>
+            <mat-option *ngFor="let c of AllCompanies" [value]="c">
+              {{c.name}}
+            </mat-option>
+            <mat-option disabled="disabled" class="filter-option">
+
+              <button mat-raised-button class="mat-accent" style="float: right;background-color: #4589ff;color:#fff"   (click)="CloseDropdownPanelMatselect()">Ok</button>
+              <button mat-raised-button class="mat-accent" style="float: right; margin-right: 5px; background-color: #fff;"  (click)="CancelDropdownPanelMatselect(companySelect)">Cancel</button>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+
+
+    </div>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button style="background-color: #4589ff;color:#fff"  cdkFocusInitial (click)="Submit()">Apply</button>
+</mat-dialog-actions>

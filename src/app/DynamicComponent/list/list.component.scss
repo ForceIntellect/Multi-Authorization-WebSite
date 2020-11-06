@@ -1,0 +1,425 @@
+.form-control {
+  border-radius: 0px;
+}
+
+.hideData {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: height 0.5s;
+}
+
+.strip {
+  min-height: 60px;
+  // background-color: #fff;
+  margin-top: 5px;
+  /*box-shadow:0px 0px 3px #afafaf;*/
+  padding-top: 5px;
+  padding-bottom: 4px;
+  box-shadow: none !important;
+}
+
+.stripInner {
+  padding: 8px;
+  color: white;
+  padding-left: 0px;
+  padding-right: 0px;
+  background-color: #fff;
+  margin: 2px;
+  box-shadow: 0px 1px 3px #00000033;
+  padding-bottom: 0px;
+}
+
+td {
+  font-size: 12px;
+}
+
+th {
+  font-size: 13px;
+}
+
+.showCurtainLeft {
+  width: 93.33%;
+}
+
+.hideCurtainLeft {
+  width: 0%;
+}
+
+.showCurtainRight {
+  width: 220px;
+  box-shadow: 0px 2px 5px #cfcfcf;
+}
+
+.hideCurtainRight {
+  width: 0%;
+}
+
+.close {
+  top: 100%;
+}
+
+.open {
+  top: 0%;
+}
+
+.shadow {
+  box-shadow: 0px 2px 3px #00000033;
+  border-radius: 2px;
+}
+
+.ShowData {
+  max-height: 1200px;
+}
+
+.HideData {
+  max-height: 200px;
+  min-height: 240px;
+}
+
+.ActiveBtn {
+  background-color: #5aa94a !important;
+  color: white !important;
+}
+
+.showTile {
+  font-weight: bolder;
+  font-size: 15px;
+  background-color: #fafafa;
+  border: 1px solid #efefef;
+  color: #ee3434;
+  text-align: center;
+  outline: none;
+  box-shadow: 0px 1px 3px #00000022;
+  border-radius: 2px;
+}
+
+.showTile :hover {
+  background-color: #cff1be;
+}
+
+.hideOFilter {
+  max-height: 0px;
+  max-width: 0px;
+  opacity: 0.3;
+}
+
+.showOFilter {
+  max-height: 1200px;
+  opacity: 1;
+  max-width: 1200px;
+}
+
+.maximumFilterWidth {
+  max-width: 1050px;
+}
+
+.minimumFilterWidth {
+  max-width: 260px;
+  min-width: 260px;
+}
+
+ul li :hover > li {
+  background-color: #efefef;
+}
+
+// .tablefont {
+//   font-size: 11px !important;
+//   font-family: "Roboto", sans-serif;
+//   font-weight: 500;
+// }
+
+.tableHeadFont {
+  font-weight: normal !important;
+  color: #ffffff !important;
+  font-size: 12px !important;
+  font-family: "Roboto", sans-serif;
+}
+
+.table thead th {
+  color: white !important;
+  font-weight: 550;
+}
+
+.rectshadow {
+  -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
+  /* Similar syntax to box-shadow */
+}
+
+/* -------------- 2 Section -------------*/
+
+.collapsablePrimary {
+  font-family: "Nunito", sans-serif;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  max-width: 220px;
+  overflow: hidden;
+  font-weight: bold !important;
+  color: #404040;
+}
+
+.collapsableSecondary {
+  font-family: "Roboto", sans-serif;
+  font-size: 7px;
+  // color: #a0a0a0;
+  white-space: nowrap;
+  font-size: 10px;
+  // color: #827f7f;
+  color: black;
+  padding: 3px;
+  overflow: hidden;
+  width: 260px;
+}
+
+.collapsableMoney {
+  font-size: 11px;
+  font-family: "Roboto", serif;
+  color: #575252;
+  padding: 4px;
+  background-color: #dd7972;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  box-shadow: 1px 1px 3px #00000066;
+  color: white;
+  border-radius: 2px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.POPTbl table td {
+  padding: 2px !important;
+}
+.popOverHead {
+  font-weight: bold;
+  font-size: 12px !important;
+  padding-bottom: 10px;
+  color: #e6752a;
+  font-family: "Lato", sans-serif;
+}
+
+.popOverLable {
+  color: #202020;
+  font-size: 12px;
+}
+
+.ShowDepartment {
+  max-height: 600px;
+  border-top: 1px solid #dfdfdf;
+  margin-top: 5px;
+}
+
+.HideDepartment {
+  max-height: 0px;
+  border: none;
+  margin-top: 0px;
+}
+
+#SCRLL::-webkit-scrollbar {
+  display: none;
+}
+
+.tblhH {
+  transition: all 0.5s;
+  background-color: white;
+  padding: 4px;
+  font-size: 12px;
+  box-shadow: 0px 1px 3px #00000033;
+  border-bottom: 2px solid #f69389;
+  border-radius: 0px;
+}
+
+.tblhH:hover {
+  transform: scale(1.1);
+}
+
+.tblCustomize {
+  font-size: 10px;
+  border: none;
+  border-radius: 1px !important;
+  white-space: nowrap;
+  text-align: center;
+  line-height: 21px;
+}
+
+.btn {
+  outline: none !important;
+  border: none !important;
+  box-shadow: 0px 1px 4px #00000044;
+  margin: 2px;
+}
+
+.backgroudForLayout {
+  background-color: #f1f1f1;
+}
+
+.backgroudWithouthLayout {
+  background-color: #efefef;
+}
+
+.col-xs-3.brdr {
+  border-left: 1px solid #efefef;
+}
+
+.col-xs-3.brdr:first-child {
+  border-left: none;
+}
+
+.mat-icon {
+  cursor: pointer;
+}
+
+#chartDiv {
+  width: 100% !important;
+}
+google-chart * {
+  font-size: 11px !important;
+}
+
+// .md-drppicker th {
+//   color: white !important;
+// }
+
+.dtprimary {
+  background: #fdae26;
+  margin-left: 26px;
+  border: none;
+  font-weight: 600;
+  max-width: 90%;
+}
+.filter {
+  position: absolute;
+  cursor: pointer;
+  margin-left: -5px;
+  margin-top: -5px;
+  color: black !important;
+}
+
+// .datepickerdiv {
+//   color: white;
+//   border-radius: 4px;
+//   background-color: #fdae26;
+//   padding: 2px 8px;
+//   padding-top: 5px;
+//   margin-top: 0px;
+//   box-shadow: 0px 1px 4px #00000022;
+//   margin-left: -60px;
+//   width: 230px;
+// }
+
+// @media only screen and (max-width: 600px) {
+//   .datepickerdiv {
+//     margin-left: 0px;
+//     width: auto;
+//   }
+// }
+
+// ::ng-deep .popOverHead {
+//   font-weight: 550;
+// }
+
+// ::ng-deep .md-drppicker td.active,
+// .md-drppicker td.active:hover {
+//   background-color: #3f51b5;
+//   color: #fff;
+// }
+
+// ::ng-deep .md-drppicker td.in-range {
+//   background-color: #eee;
+//   border-color: #eee;
+//   color: rgba(0, 0, 0, 0.87);
+// }
+
+::ng-host .input {
+  color: white !important;
+}
+
+.POTrend {
+  margin-top: 18px !important;
+}
+
+/*---------pop hover-----------*/
+
+.popover {
+  position: absolute;
+  background: white;
+  left: 100%;
+  width: 70%;
+  display: none;
+  padding: none;
+  overflow: visible !important;
+  z-index: 999 !important;
+  /* border: 4px solid #443c5d; */
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px #afafaf;
+}
+
+.popover::after {
+  content: " ";
+  position: absolute;
+  top: 0%;
+  right: 100%;
+  margin-top: 0px;
+  border-width: 11px;
+  border-style: dashed;
+  border-color: transparent #dfdfdf transparent transparent;
+}
+
+// --- / --- / ---
+
+.fa-refresh:before {
+  content: "\f021";
+  background: #efefef !important;
+}
+
+// .tablefont {
+// font-size: 10px !important;
+// font-family: "Roboto", sans-serif;
+// }
+
+// .md-drppicker td.active,
+// .md-drppicker td.active:hover {
+//   background-color: #3f51b5;
+//   color: #fff;
+// }
+
+// .md-drppicker td.in-range {
+//   background-color: #eee;
+//   border-color: #eee;
+//   color: rgba(0, 0, 0, 0.87);
+// }
+
+#vtable {
+  display: table;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+}
+.overlay {
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(0, 0, 0, 0.228);
+  z-index: 10;
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+
+.Amount::first-letter {
+  padding-right: 0.3em;
+}
+.backdropModalCls{
+  background-color: transparent;
+}
+.DialogPannelClas{
+  padding: 0px !important;
+}

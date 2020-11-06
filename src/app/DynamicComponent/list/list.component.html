@@ -1,0 +1,62 @@
+<div [ngClass]="{overlay: isLoading}" *ngIf="isLoading">
+  <mat-progress-spinner class="example-margin" strokeWidth="3" [diameter]="30" [mode]="'indeterminate'" [value]="50"
+    style="margin-left: 50% !important;margin-top: 22% !important;">
+  </mat-progress-spinner>
+</div>
+<div class="col-md-12 topTenCls" style="padding:0px;" *ngIf="!isLoading">
+  <!-- class="shadow" -->
+  <div style="background-color:white;background-color:white;transition:all 0.5s;"
+    [ngClass]="{'ShowData':false,'HideData':false}">
+    <!-- <div style="padding:6px;padding-top:0px;margin-top:-6px; display: flex;
+    align-items: center;">
+      <h4 style="font-family: 'Nunito', sans-serif;font-size:14px;font-weight:bold;color:#101010;margin:0px;padding-top:8px;display: flex;
+        align-items: center;">
+        <mat-icon aria-hidden="true">list</mat-icon> Top 10 Items Values Wise
+      </h4>
+    </div> min-width:210px;          width="240"
+-->
+    <table class="table table-condensed table-responsive " id="vtable"
+      style="min-width:100%;margin-top:0px;border:none !important;display: table;">
+      <tbody>
+        <tr *ngFor="let d of ListData">
+          <td
+            style="padding-bottom:4px;;white-space:nowrap;text-overflow:ellipsis;border:none;border-bottom:1px solid #efefef;overflow: hidden;">
+            <div style="white-space:nowrap">
+              <div class="collapsablePrimary" title="{{d.Title}}">{{d.Title}}</div>
+              <div>
+                <div class="collapsableSecondary">
+                  <span
+                    [ngStyle]="{'background-color': MakeitHighlighted(d),'color': d.Highlighter ? '#fff' : '#000','font-weight':d.Highlighter ? 'bold' : '400','padding':d.Highlighter ? '4px' : 'none'}">
+                    <span>{{d.SubTitle1Caption}} </span> :
+                    <span>{{d.SubTitle1Value}}</span></span> |
+                  <span><span>{{d.SubTitle2Caption}}</span> :
+                    <span>{{ d.SubTitle2Value }}</span></span>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td style="border:none;border-bottom:1px solid #efefef;">
+            <div  class="collapsableMoney" style="white-space:nowrap;"
+                  [ngStyle]="{'background-color': Tilecolor}"
+                  (mouseenter) = "CallPopOver(d,$event,DivId)"
+                  (mouseleave) = "DismissPopOver()">
+              {{d.CountOnTile}}
+            </div>
+            <!-- </div> -->
+          </td>
+          <div>
+            <div class="popover" [attr.id]="DivId"
+              style="display: none;overflow: visible !important;z-index: 900  !important;">
+            </div>
+          </div>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- <div class="showTile" (click)="Show = (Show== true)?false:true;">
+    <span>
+      <i class="fa fa-caret-down" aria-hidden="true" [hidden]="Show"></i>
+      <i class="fa fa-caret-up" aria-hidden="true" [hidden]="!Show"></i>
+    </span>
+  </div> -->
+</div>

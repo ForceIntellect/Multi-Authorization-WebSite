@@ -1,0 +1,31 @@
+<div [ngClass]="{overlay: isLoading}" *ngIf="isLoading">
+  <mat-progress-spinner class="example-margin" strokeWidth="3" [diameter]="30" [mode]="'indeterminate'" [value]="50"
+    style="margin-left: 50% !important;margin-top: 17% !important;">
+  </mat-progress-spinner>
+</div>
+<div *ngIf="!isLoading">
+  <div class="col-md-12" style="padding:0px;">
+    <div>
+      <div class="stripInner">
+        <div style="font-weight:bold;color:#fff;">
+          <h4 style="padding:0px;margin-top:0px;margin:2px;white-space:nowrap;font-weight:bold;">
+            {{Tile[0].Value}} <span style="font-size:12px"
+              *ngIf="Tile[0]['SubCaption2']">{{Tile[0]['SubCaption2']}}</span>
+          </h4>
+        </div>
+        <div style="margin-top:-1px;">
+          <!-- border-bottom:2px solid  #62c284 ; -->
+          <div
+            style="color:#fff;padding:5px 4px 5px 4px;border-radius:0px;padding:5px 4px 5px 4px;border-radius:0px;font-weight:normal;font-size: 14px;">
+            {{Tile[0].Caption}}
+          </div>
+          <div
+            style="color:#fff;padding:0px 4px;border-radius:0px;border-radius:0px;font-weight:bold;font-size: 11px;margin-top: -2px;"
+            *ngIf="Tile[0]['SubCaption1']">
+            {{Tile[0]["SubCaption1"]}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
